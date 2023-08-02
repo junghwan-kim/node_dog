@@ -17,6 +17,7 @@ conn.connect((error) => {
     console.log("MySQL 연결 실패 : ", error);
     return;
   }
+
   console.log("Successfully connected to the database. ");
 });
 
