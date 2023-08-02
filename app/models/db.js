@@ -13,7 +13,7 @@ const conn = maria.createConnection({
 
 conn.connect((error) => {
   if (error) {
-    console.log("MySQL 연결 실패 : ", error);
+    console.log("MySQL 연결 실패 ssss: ", error);
     return;
   }
 
