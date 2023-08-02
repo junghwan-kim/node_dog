@@ -17,6 +17,15 @@ conn.connect((error) => {
     return;
   }
 
+  /*
+    git init
+    git add .
+    git commit -m "두번째 commit"
+    git branch -M main
+    git remote add origin https://github.com/junghwan-kim/node_dog.git
+    git push -u origin main
+  */
+
   console.log("Successfully connected to the database. ");
 });
 
