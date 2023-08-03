@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
   res.json({ message: "node js" });
 });
 
-//require("./app/routes/dogs.routes")(app);
+require("./app/routes/dogs.routes")(app);
 app.listen(PORT, function () {
   console.log(`server is running on port ${PORT}!!`);
 });

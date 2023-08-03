@@ -13,14 +13,14 @@ const conn = maria.createConnection({
 
 conn.connect((error) => {
   if (error) {
-    console.log("MySQL 연결 실패 ssss: ", error);
+    console.log("MySQL 연결 실패: ", error);
     return;
   }
 
   /*
     git init
     git add .
-    git commit -m "두번째 commit"
+    git commit -m "클라우드타입 commit"
     git branch -M main
     git remote add origin https://github.com/junghwan-kim/node_dog.git
     git push -u origin main

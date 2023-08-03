@@ -1,9 +1,9 @@
-const dogs = require("../models/dogs.model");
+const Dogs = require("../models/dogs.model");
 
 /*
 CRUD ##############
 */
-
+/*
 exports.create = (req, res) => {
   if (!req.body) {
     res.status(400).send({
@@ -28,7 +28,7 @@ exports.create = (req, res) => {
     }
   });
 };
-
+*/
 //전체조회
 exports.findAll = (req, res) => {
   Dogs.getAll((err, data) => {
