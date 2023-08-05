@@ -3,12 +3,18 @@ const Dogs = require("../models/dogs.model");
 /*
 CRUD ##############
 */
-/*
+
+const returnData = {
+  resData: [],
+  res_message: null,
+  resAt: new Date().getTime(),
+};
+
 exports.create = (req, res) => {
   if (!req.body) {
-    res.status(400).send({
-      message: "Content can not be empty",
-    });
+    returnData.resData = [];
+    returnData.res_message = "데이터가 없습니다";
+    res.status(400).send(returnData);
   }
 
   const dogs = new Dogs({
@@ -21,41 +27,53 @@ exports.create = (req, res) => {
 
   //데이터베이스 저장
   Dogs.create(dogs, (err, data) => {
+    returnData.resData = [];
     if (err) {
-      res.status(500).send({
-        message: err.message || "insert 오류가 발생했습니다",
-      });
+      returnData.res_message = err.message || "insert 오류가 발생했습니다";
+      res.status(500).send(returnData);
+    } else {
+      returnData.resData = data;
+      returnData.res_message = "insert ok!!!";
+      res.status(200).send(returnData);
     }
   });
 };
-*/
+
 //전체조회
 exports.findAll = (req, res) => {
   Dogs.getAll((err, data) => {
+    returnData.resData = [];
     if (err) {
-      res.status(500).send({
-        message: err.message || "검색하는 동안 일부 오류가 발생했습니다",
-      });
+      returnData.res_message =
+        err.message || "검색하는 동안 일부 오류가 발생했습니다";
+      res.status(500).send(returnData);
     } else {
-      res.send(data);
+      returnData.resData = data;
+      returnData.res_message = "select ok!!!";
+      res.status(200).send(returnData);
     }
   });
 };
 
 exports.findId = (req, res) => {
   Dogs.findById(req.params.dogsId, (err, data) => {
+    returnData.resData = [];
     if (err) {
       if (err.kind === "not_found") {
-        res.status(404).send({
-          message: `다음 id의 정보를 찾을 수 없습니다 id: ${req.params.dogsId}.`,
-        });
+        returnData.res_message =
+          err.message ||
+          `다음 id의 정보를 찾을 수 없습니다 id: ${req.params.dogsId}.`;
+        res.status(404).send(returnData);
       } else {
-        res.status(500).send({
-          message: `검색하는 도중 오류가 발행되었습니다 id ${req.params.dogsId}.`,
-        });
+        returnData.res_message =
+          err.message ||
+          `검색하는 도중 오류가 발행되었습니다 id ${req.params.dogsId}.`;
+        res.status(500).send(returnData);
       }
     } else {
-      res.send(data);
+      returnData.resData = data;
+      returnData.res_message = "select dog ok!!!";
+      res.status(200).send(returnData);
     }
   });
 };
