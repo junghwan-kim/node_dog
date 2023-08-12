@@ -1,6 +1,8 @@
 const sql = require("./db");
 
 const Dogs = function (dogs) {
+  this.client_id = dogs.client_id;
+  this.client_pw = dogs.client_pw;
   this.dog_name = dogs.dog_name;
   this.breed = dogs.breed;
   this.admission_date = dogs.admission_date;
@@ -9,7 +11,7 @@ const Dogs = function (dogs) {
 };
 
 Dogs.create = (obj, result) => {
-  sql.query("INSERT INTO dog SET ?", obj, (err, res) => {
+  sql.query("INSERT INTO user_dog SET ?", obj, (err, res) => {
     if (err) {
       console.log("error:", err);
       result(err, null);
@@ -22,7 +24,7 @@ Dogs.create = (obj, result) => {
 };
 
 Dogs.getAll = (result) => {
-  sql.query("SELECT * FROM dog", (err, res) => {
+  sql.query("SELECT * FROM user_dog", (err, res) => {
     if (err) {
       console.log("error:", err);
       result(err, null);
@@ -35,7 +37,7 @@ Dogs.getAll = (result) => {
 };
 
 Dogs.findById = (dogsId, result) => {
-  sql.query("SELECT * FROM dog WHERE dog_id=?", dogsId, (err, res) => {
+  sql.query("SELECT * FROM user_dog WHERE dog_id=?", dogsId, (err, res) => {
     if (err) {
       console.log("error:", err);
       result(err, null);

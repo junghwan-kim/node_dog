@@ -18,6 +18,8 @@ exports.create = (req, res) => {
   }
 
   const dogs = new Dogs({
+    client_id: req.body.client_id,
+    client_pw: req.body.client_pw,
     dog_name: req.body.dog_name,
     breed: req.body.breed,
     admission_date: req.body.admission_date,
@@ -55,6 +57,7 @@ exports.findAll = (req, res) => {
   });
 };
 
+//dog id로 찾기
 exports.findId = (req, res) => {
   Dogs.findById(req.params.dogsId, (err, data) => {
     returnData.resData = [];
